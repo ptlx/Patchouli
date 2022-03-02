@@ -3,6 +3,8 @@ const { Client, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 client.once("ready", async () => {
+    // （スラッシュ）コマンドの配列。これを最初にsetしている。
+    //  コマンドの規模が大きくなったらjsonに格納してそれをsetするようにしようかなと考えている。
     const data = [{
         name: "ping",
         description: "initial command",
@@ -10,6 +12,7 @@ client.once("ready", async () => {
     await client.application.commands.set(data/*, process.env.SERVER_ID*/);
     console.log("Ready!");
 });
+
 
 client.on("interactionCreate", async (interaction: CommandInteraction) => {
     if (!interaction.isCommand()) return;
