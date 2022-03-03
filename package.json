@@ -10,10 +10,7 @@
     "typescript": "^4.6.2"
   },
   "scripts": {
-    "start": "node ./build/main.js",
-    "debug": "ts-node ./src/main.ts",
-    "compile": "tsc -p .",
-    "compile:test": "tsc -p . --noEmit"
+    "start": "ts-node ./src/main/main.ts"
   },
   "dependencies": {
     "discord.js": "^13.6.0",
