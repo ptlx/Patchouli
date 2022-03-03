@@ -3,7 +3,7 @@ const cheerio = require("cheerio");
 
 const nitkcURL = "https://www.kurume-nct.ac.jp/";
 
-export const checkEmergencyContact = async () => {
+export const checkUrgentContact = async () => {
     const response = await requestPromise({
         uri: nitkcURL,
         gzip: true

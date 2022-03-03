@@ -1,7 +1,7 @@
 import { CommandInteraction/*,Message*/ } from "discord.js";
 const { Client, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-import { checkEmergencyContact } from "../check-urgent-contact/index"
+import { checkUrgentContact } from "../check-urgent-contact/index"
 import { commands } from "./commands";
 
 client.once("ready", async () => {
@@ -14,7 +14,7 @@ client.on("interactionCreate", async (interaction: CommandInteraction) => {
     if (!interaction.isCommand()) return;
 
     if (interaction.commandName === 'emergency') {
-        const contact: string = await checkEmergencyContact()
+        const contact: string = await checkUrgentContact()
         await interaction.reply(contact ? contact : "緊急連絡が見つからなかったようね。");
     }
 
