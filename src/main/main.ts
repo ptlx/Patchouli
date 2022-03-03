@@ -31,5 +31,5 @@ client.on('messageCreate', (message: Message) => {
     message.channel.send("テスト");
 });
 */
-  require('dotenv').config();
-  client.login(process.env.TOKEN);
+require('dotenv').config();
+client.login(process.env.TOKEN);
