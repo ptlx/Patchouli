@@ -1,4 +1,4 @@
-# Patcouli
+# Patchouli
 discord.jsを用いた東方Projectのキャラクターであるパチュリーのbotです。
 
 ## 動機（重要）
