@@ -9,7 +9,6 @@ export const checkEmergencyContact = async () => {
         gzip: true
     })
     const $ = cheerio.load(response);
-    console.log($)
     const emergencyColumn = $('.top-important-inner').text();
     if (emergencyColumn) return emergencyColumn;
     else return null;
