@@ -1,6 +1,7 @@
 import { CommandInteraction/*,Message*/ } from "discord.js";
 const { Client, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+import {checkEmergencyContact} from "../checkEmergencyContact/index"
 
 client.once("ready", async () => {
     // （スラッシュ）コマンドの配列。これを最初にsetしている。
@@ -8,6 +9,23 @@ client.once("ready", async () => {
     const data = [{
         name: "ping",
         description: "initial command",
+        "options": [
+            {
+                "name": "arg",
+                "description": "test",
+                "type": 3,
+                "required": true,
+                "choices": [
+                    {
+                        "name": "4S",
+                        "value": "4Sno"
+                    }
+                ]
+            }
+        ]
+    },{
+        name: "emergency",
+        description: "see nitkc's emergency contact",
     }];
     await client.application.commands.set(data/*, process.env.SERVER_ID*/);
     console.log("Ready!");
@@ -15,10 +33,22 @@ client.once("ready", async () => {
 
 
 client.on("interactionCreate", async (interaction: CommandInteraction) => {
+    // console.log(interaction.options.data);
     if (!interaction.isCommand()) return;
-    // ex
-    if (interaction.commandName === 'ping') {
-        await interaction.reply('pong!!');
+
+    const optionData = interaction.options.data[0]
+    // optionData.value: string | number | boolean | undefined
+    if(!optionData.value) return;
+    // optionData.value: string | number | true
+    
+    if (interaction.commandName === 'emergency') {
+        const contact: string = await checkEmergencyContact()
+        // console.log(contact)
+        await interaction.reply(contact ? contact : "緊急連絡が見つからなかったようね。");
+
+    }
+    if(interaction.commandName === 'ping'){
+        await interaction.reply("pong");
     }
 });
 
