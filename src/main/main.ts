@@ -1,7 +1,7 @@
 import { CommandInteraction/*,Message*/ } from "discord.js";
 const { Client, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-import {checkEmergencyContact} from "../checkEmergencyContact/index"
+import { checkEmergencyContact } from "../checkEmergencyContact/index"
 
 client.once("ready", async () => {
     // （スラッシュ）コマンドの配列。これを最初にsetしている。
@@ -38,16 +38,16 @@ client.on("interactionCreate", async (interaction: CommandInteraction) => {
 
     const optionData = interaction.options.data[0]
     // optionData.value: string | number | boolean | undefined
-    if(!optionData.value) return;
+    if (!optionData.value) return;
     // optionData.value: string | number | true
-    
+
     if (interaction.commandName === 'emergency') {
         const contact: string = await checkEmergencyContact()
         // console.log(contact)
         await interaction.reply(contact ? contact : "緊急連絡が見つからなかったようね。");
 
     }
-    if(interaction.commandName === 'ping'){
+    if (interaction.commandName === 'ping'){
         await interaction.reply("pong");
     }
 });
