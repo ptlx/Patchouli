@@ -8,3 +8,6 @@ botを作りたくなりました。複雑な事情によりTypeScriptを使っ�
 # 注意点
 dotenvを使っています。`.env` ファイルを`build/` に作って、`TOKEN="ocjajcoijcjajaecjoi"` のようにDiscordのbotのトークンを入力しておいてください。
 また、node.jsのバージョンは16以上が必要です。（discord.jsのv.13を利用していますが、それにこのバージョンが要求されています。）
+
+## 開発環境
+Ubuntu20.04, node.js v16.14.0(with npm 6.14.15)
